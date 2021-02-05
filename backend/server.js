@@ -5,6 +5,7 @@ const colors = require('colors');
 const morgan = require('morgan');
 const connectDB = require('./db');
 const middlewares = require('./middlewares');
+const logs = require('./routes');
 
 console.log('__dirname', __dirname);
 dotenv.config();
@@ -21,6 +22,8 @@ app.get('/', (req, res) => {
   res.json({ message: 'Hello World' })
   // res.send('API is running')
 })
+
+app.use('/api/logs', logs);
 
 app.use(middlewares.notFound);
 app.use(middlewares.errorHandler);
